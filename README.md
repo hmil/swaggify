@@ -5,14 +5,15 @@ Hypster word processor.
 
 ```
 > swaggify('baltimore')
-baltiswagg
+baltiswag
 ```
 
 ## Usage
 
 ```
 var swaggify = require('swaggify')({
-  lang: 'fr' // Any of: 'fr', 'en-us', 'es', 'it', 'nl', 'de'
+  lang: 'fr',
+  gs: 2
 });
 
 swaggify('alphabet')    // alphaswagg
@@ -21,6 +22,10 @@ swaggify('atlantide')   // atlanswagg
 swaggify('automobile')  // automoswagg
 swaggify('noeud')       // null
 ```
+
+### Options
+- lang: Language used for word analysis (possible values: 'fr', 'en-us', 'es', 'it', 'nl', 'de')
+- gs: Number of Gs in swag* (default = 1)
 
 ## Syntax
 

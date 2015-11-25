@@ -1,8 +1,8 @@
 var Hypher = require('hypher');
 var locales = require('./locales');
 
-function swaggifier(locale) {
-  var h = new Hypher(locale);
+function swaggifier(opts) {
+  var h = new Hypher(opts.locale);
 
   return function(phrase) {
     var syllabes = h.hyphenate(phrase);
@@ -11,7 +11,7 @@ function swaggifier(locale) {
     if (syllabes.length < 3) return null;
 
     // Replace last syllable with swagg
-    syllabes.splice(-1, 1, 'swagg');
+    syllabes.splice(-1, 1, opts.swag);
     return syllabes.join('');
   };
 }
@@ -20,9 +20,18 @@ function swaggifier(locale) {
 module.exports = function(options) {
 
   var lang = options.lang || 'en-us';
+  var gs = options.gs || 1;
+  var swag = "swa";
+  for (var i = 0 ; i < gs ; i++) {
+    swag += "g";
+  }
 
   if (locales[lang] == null) {
     throw Error("Cannot instanciate a swaggyfier for language "+lang);
   }
-  return swaggifier(locales[lang]);
+
+  return swaggifier({
+    locale: locales[lang],
+    swag: swag
+  });
 };
